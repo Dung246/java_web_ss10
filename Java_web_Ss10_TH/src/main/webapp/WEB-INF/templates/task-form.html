@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thêm công việc</title>
+</head>
+<body>
+
+<h2>Thêm công việc</h2>
+
+<form th:action="@{/tasks/add}" th:object="${task}" method="post">
+
+    <div>
+        Title:
+        <input type="text" th:field="*{title}" />
+        <p th:if="${#fields.hasErrors('title')}"
+           th:errors="*{title}" style="color:red"></p>
+    </div>
+
+    <div>
+        Deadline:
+        <input type="date" th:field="*{deadline}" />
+        <p th:if="${#fields.hasErrors('deadline')}"
+           th:errors="*{deadline}" style="color:red"></p>
+    </div>
+
+    <div>
+        Priority:
+        <select th:field="*{priority}">
+            <option value="">--Chọn--</option>
+            <option value="HIGH">HIGH</option>
+            <option value="MEDIUM">MEDIUM</option>
+            <option value="LOW">LOW</option>
+        </select>
+        <p th:if="${#fields.hasErrors('priority')}"
+           th:errors="*{priority}" style="color:red"></p>
+    </div>
+
+    <button type="submit">Lưu</button>
+
+</form>
+
+</body>
+</html>
